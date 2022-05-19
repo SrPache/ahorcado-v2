@@ -1,0 +1,141 @@
+:root {
+    --alura: #0a3871;
+    --alura-dark: #0b2d5d;
+    --fondo: #f3f5fc;
+    --info: #6b7178;
+    --extra: #343a40;
+    --rojo: #f00;
+    --fuente: "Roboto-flex", sans-serif;
+    --transparencia: rgba(255, 255, 255, 0.95);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: var(--fuente);
+    box-sizing: border-box;
+}
+
+#header{grid-area: header}
+#main{grid-area: main}
+#footer{grid-area: footer}
+
+body{width:100%; height: 100%;}
+#max{
+    max-width: 1000px;
+    margin: 0 auto;
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content minmax(65vh, 1fr) auto;
+    grid-template-areas:
+        'header'
+        'main'
+        'footer';
+    justify-items: center;
+    align-items: center;
+    gap:1.5rem;
+    padding: 1rem;
+}
+
+#logo{max-width: 28px;}
+
+#menu{
+    display:grid;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    gap:.5rem;
+}
+
+#menu #menuAddWord{
+    display:grid;
+    grid-template-columns: 1fr auto;
+    gap:.5rem
+}
+
+#menu #menuAddWord button{
+    padding:0;
+}
+
+/* ESTILOS DE BOTONES E INPUTS */
+#menu button, #menu input, #menu #add, #menu p{
+    width:100%;
+    background-color: inherit;
+    display:inline-block;
+    font-size: inherit;
+    text-decoration: none;
+    text-align:center;
+    border: none;
+    outline: none;
+    padding:.5rem 1rem;
+    border-radius: .2rem;
+}
+
+#menu button{
+    cursor: pointer;
+}
+
+#menu #newGame, #menu #add{
+    background-color: var(--alura);
+    color:white;
+    text-transform: uppercase;
+}
+
+#menu #word{
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--fondo);
+}
+
+#menu #word::placeholder{
+    color: var(--alura);
+}
+
+#menu #word:hover,
+#menu #word:focus{
+    border-color: var(--alura)
+}
+
+#menu #menuError{
+    margin:1rem 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    color: red;
+    opacity: .5;
+    font-size: 1.5rem;
+    padding:1rem 0;
+    display:none;
+    background-color: #f002;
+    border-radius:.25rem;
+}
+
+#menu #menuError i{
+    padding:.25rem 0 .25rem 1rem;
+}
+
+#menu #error{
+    margin:0;
+    padding:0 1rem;
+    font-size: .8rem;
+    max-width:37ch;
+    margin: 0 auto;
+    text-align: left;
+    background-color: transparent;
+}
+
+#menu #clear{
+    color: var(--alura);
+    opacity: .5;
+}
+
+#footer{color: var(--info); font-size: .8rem; opacity:.8}
+#footer a{
+    text-decoration: none;
+    font-weight: 600;
+    color:var(--alura)
+}
+
+#footer:hover,
+#footer:focus{
+    opacity: 1;
+}
