@@ -4,11 +4,13 @@ let wordInput = document.getElementById('word');
 
 let newGame = document.getElementById('newGame');
 let errorAlert = document.getElementById('menuError');
+let clearWords = document.getElementById('clear');
 
 add.onclick = () => {
     word = wordInput.value.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s\s+/g, " ").trim().toLowerCase();
     if (word.length>3 && word != ""){
         words.push(word);
+        clearWords.style.display = "block";
     } else {
         error.innerHTML = "Must be LONGER than three characters and cannot contain numbers";
         errorAlert.style.display = "flex";
@@ -35,4 +37,11 @@ newGame.onclick = () => {
     }
 }
 
+clearWords.onclick = () => {
+    let respuesta = prompt("Are you sure? Press Y to confirm:");
+    if (respuesta.toLowerCase()=="y"){
+        words = [];
+        clearWords.style.display = "none";
+    }
+}
 
