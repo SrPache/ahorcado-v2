@@ -29,7 +29,7 @@
 
         <div id="menuAddWord"><input type="password" name="pass" id="word" placeholder="Add word" autofocus><button type="button"   id="add"><i class="fa-solid fa-paper-plane"></i></button></div>
 
-        <div id="menuError"><i class="fa-solid fa-triangle-exclamation"></i><p id="error"></p></div>
+        <div id="menuError" class="menuError"><i class="fa-solid fa-triangle-exclamation"></i><p id="error" class="error"></p></div>
 
         <div><button type="button" id="clear">Clear words</button></div>
         
@@ -38,23 +38,21 @@
         </div>
 
         <div id="juego" class="menu">
-            
-            <div id="divInputLetras">
-            
-                <input type="text" placeholder="Ingrese una letra" maxlength="1" id="letterPress">
-            
-                <button type="button" id="letterCheck"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
 
-            <div id="image"><img src="public/media/img/states/state-1.png" alt="" id="game-image"></div>
+            <div id="menuErrorJuego" class="menuError"><i class="fa-solid fa-triangle-exclamation"></i><p id="errorJuego" class="error"></p></div>
+            <div id="fin"><h2 id="finH2"></h2></div>
+
+            <div id="image"><img src="public/media/img/states/state-1.png" alt="" id="gameImage"></div>
+            <div id="hearts"></div>
 
             <div id="secretWord">
+            
                 
             </div>
-            
-            
-
-            <div><p>Letras equivocadas:</p><p id="wrong-letters"></p></div>
+            <div id="divInputLetras">
+                <input type="text" placeholder="Ingrese una letra" maxlength="1" id="letterPress">
+                <button type="button" id="letterCheck"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
         </div>
 
 

@@ -17,7 +17,32 @@
 }
 
 #header{grid-area: header}
-#main{grid-area: main; height: 100%; display: flex; flex-direction: column; justify-content: center;}
+
+#menuErrorJuego{grid-area: menuErrorJuego}
+#fin{grid-area: fin}
+#hearts{grid-area: hearts}
+#image{grid-area: image}
+#secretWord{grid-area: secretWord}
+#divInputLetras{grid-area: divInputLetras}
+
+#main .menu{
+    grid-area: main; height: 100%; display: flex; flex-direction: column; justify-content: flex-start;
+}
+
+#main #juego{
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content 1fr min-content auto min-content;
+    grid-template-areas:
+        'menuErrorJuego'
+        'fin'
+        'image'
+        'hearts'
+        'secretWord'
+        'divInputLetras';
+    display:none;
+}
+
 #footer{grid-area: footer}
 
 body{width:100%; height: 100%; background-color: var(--fondo) ;}
@@ -58,6 +83,11 @@ body{width:100%; height: 100%; background-color: var(--fondo) ;}
 
 .menu #clear {
     display: none;
+}
+
+#finH2{
+    color: var(--alura);
+    text-align: center;
 }
 
 /* ESTILOS DE BOTONES E INPUTS */
@@ -120,7 +150,7 @@ body{width:100%; height: 100%; background-color: var(--fondo) ;}
     border-color: var(--alura);
 }
 
-.menu #menuError{
+.menu .menuError{
     margin:1rem 0;
     display: flex;
     justify-content: center;
@@ -135,11 +165,18 @@ body{width:100%; height: 100%; background-color: var(--fondo) ;}
     border-radius:.25rem;
 }
 
-.menu #menuError i{
+.menu .menuError i{
     padding:.25rem 0 .25rem 1rem;
 }
 
-.menu #error{
+#menuErrorJuego{
+    margin:0;
+    padding: 0;
+    font-size:1rem;
+    text-align: center;
+}
+
+.menu .error{
     margin:0;
     padding:0 1rem;
     font-size: .8rem;
@@ -154,6 +191,14 @@ body{width:100%; height: 100%; background-color: var(--fondo) ;}
     opacity: .5;
 }
 
+#hearts{
+    display:flex;
+    justify-content: center;
+    gap:.5rem;
+    font-size: 1.2rem;
+    color:red;
+}
+
 #footer{color: var(--info); font-size: .8rem; opacity:.8}
 #footer a{
     text-decoration: none;
@@ -165,21 +210,6 @@ body{width:100%; height: 100%; background-color: var(--fondo) ;}
 #footer:focus{
     opacity: 1;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .menu#juego{
     display:none;
@@ -198,7 +228,7 @@ body{width:100%; height: 100%; background-color: var(--fondo) ;}
 
 .menu #image img{
     max-width: 100%;
-    height: 200px;
+    height: 160px;
 }
  
 #secretWord{
@@ -256,3 +286,19 @@ body{width:100%; height: 100%; background-color: var(--fondo) ;}
     text-transform: initial;
 }
 
+@media screen and (max-width: 550px){
+    .menu #image img{
+        height: 150px;
+    }
+
+    /* #main{
+        grid-template-rows: min-content min-content min-content 1fr auto min-content;
+        grid-template-areas:
+            'menuErrorJuego'
+            'fin'
+            'hearts'
+            'image'
+            'secretWord'
+            'divInputLetras';
+    } */
+}

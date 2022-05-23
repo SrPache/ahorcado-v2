@@ -1,5 +1,4 @@
 let word;
-let guestWord;
 let fakeWord = [];
 
 let randomWord;
@@ -17,28 +16,11 @@ let errorAlert = document.getElementById('menuError');
 let clearWords = document.getElementById('clear');
 let random = -1;
 let secretWord = document.getElementById('secretWord');
-
-function toPlay(letters, fakeWord, randomWord, inicio){
-    if (inicio){
-        alert("hola");
-        for (let i=0; i<fakeWord.length; i++){
-            alert("hola again");
-            secretWord.innerHTML += '<div><p>' + "hola" + '</p></div>';
-        }
-    }
-    //             secretWord.innerHTML += '<div><p>' + letras[j] + '</p></div>';
-    //             alert("si");
-    //         }else{
-    //             alert("no");
-    //         }
-            
-    //         // secretWord.innerHTML += '<div><p>' + words[random][i].toUpperCase() + '</p></div>';
-    
-    //     }
-    // }
-    
-    
-}
+let hearts = document.getElementById('hearts');
+let gameImage = document.getElementById('gameImage');
+let lives = 7;
+let sourceImage = 0;
+let wrong = false;
 
 function fakerWord(){
     for (let i=0; i<randomWord.length; i++){
@@ -46,8 +28,67 @@ function fakerWord(){
     }
 }
 
+function checkWords(randomWord, fakeWord, letter){
+    wrong = true;
+    if (letters.includes(letter)){
+        errorJuego.innerHTML = "Ya usaste esa letra";
+        menuErrorJuego.style.display = "flex";
+        wrong = false;
+    } else if (letter==""){
+        errorJuego.innerHTML = "No ingresaste ninguna letra";
+        menuErrorJuego.style.display = "flex";
+        wrong = false;
+    } else {
+        letters.push(letter);
+        menuErrorJuego.style.display = "none";
+    }
+    
+    for (let i=0; i<randomWord.length; i++){
+        if (letter == randomWord[i]){
+            fakeWord[i] = letter;
+            wrong = false;
+        }
+    }
+
+    if (wrong){
+        lives--;
+        sourceImage++;
+        gameImage.src = 'public/media/img/states/state-'+ sourceImage+'.png';
+    }
+}
+
+function play(randomWord, fakeWord, letter){
+    secretWord.innerHTML = '';
+    checkWords(randomWord, fakeWord, letter);
+    for (let i=0; i<fakeWord.length; i++){
+        secretWord.innerHTML += '<div><p>' + fakeWord[i] + '</p></div>';
+    }
+    heartsLeft();
+    letterPress.value = "";
+    letterPress.focus();
+}
+
+function heartsLeft(){
+    hearts.innerHTML = "";
+    if (lives <= 0){
+        secretWord.style.display = "none";
+        hearts.style.display = "none";
+        divInputLetras.style.display = "none";
+        finH2.innerHTML = "PERDISTE ZANGANO";
+        setTimeout(()=>{
+            sourceImage++;
+            gameImage.src = 'public/media/img/states/state-'+ sourceImage+'.png';
+        },3000);
+        gameImage.style.height = '100%';
+    } else {
+        for (let i = 0; i < lives; i++) {
+            hearts.innerHTML += '<span class="hearts">&#10084;</span>';
+        }
+    }
+}
+
 add.onclick = () => {
-    word = wordInput.value.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s\s+/g, " ").trim().toLowerCase();
+    word = wordInput.value.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s\s+/g, " ").trim().toUpperCase();
     if (word.length>3 && word != ""){
         words.push(word);
         clearWords.style.display = "block";
@@ -55,7 +96,6 @@ add.onclick = () => {
         error.innerHTML = "Must be LONGER than three characters and cannot contain numbers";
         errorAlert.style.display = "flex";
     }
-    alert(words);
     wordInput.value = "";
     wordInput.focus();
 }
@@ -80,17 +120,14 @@ newGame.onclick = () => {
             random = Math.round(Math.random()*words.length);
         }
         randomWord = words[random];
-        
         fakerWord();
-
-        // toPlay(letters, fakeWord, randomWord, true);
-
+        play(randomWord, fakeWord, letter);
     }
 }
 
 clearWords.onclick = () => {
     let respuesta = prompt("Are you sure? Press Y to confirm:");
-    if (respuesta.toLowerCase()=="y"){
+    if (respuesta.toUpperCase()=="Y"){
         words = [];
         clearWords.style.display = "none";
     }
@@ -111,9 +148,6 @@ letterPress.onkeyup = function(e) {
 };
 
 letterCheck.onclick = () => {
-    letter = letterPress.value.toLowerCase();    
+    letter = letterPress.value.toUpperCase();
+    play(randomWord, fakeWord, letter);
 }
-
-
-
-
