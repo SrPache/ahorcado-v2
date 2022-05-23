@@ -15,7 +15,7 @@
 <body>
     <div id="max">
     <header id="header">
-        <a href="#"><img src="public/media/img/logotipo.png" alt="alura" id="logo"></a>
+        <a href="index.html"><img src="public/media/img/logotipo.png" alt="alura" id="logo"></a>
     </header>
     <main id="main">
 
@@ -23,7 +23,7 @@
         
         
 
-        <div id="menu">
+        <div id="menu" class="menu">
         
         <div><button type="button" id="newGame">New Game</button></div>
 
@@ -35,6 +35,26 @@
         
         
 
+        </div>
+
+        <div id="juego" class="menu">
+            
+            <div id="divInputLetras">
+            
+                <input type="text" placeholder="Ingrese una letra" maxlength="1" id="letterPress">
+            
+                <button type="button" id="letterCheck"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+
+            <div id="image"><img src="public/media/img/states/state-1.png" alt="" id="game-image"></div>
+
+            <div id="secretWord">
+                
+            </div>
+            
+            
+
+            <div><p>Letras equivocadas:</p><p id="wrong-letters"></p></div>
         </div>
 
 

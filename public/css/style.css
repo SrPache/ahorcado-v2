@@ -17,7 +17,7 @@
 }
 
 #header{grid-area: header}
-#main{grid-area: main}
+#main{grid-area: main; height: 100%; display: flex; flex-direction: column; justify-content: center;}
 #footer{grid-area: footer}
 
 body{width:100%; height: 100%; background-color: var(--fondo) ;}
@@ -39,29 +39,29 @@ body{width:100%; height: 100%; background-color: var(--fondo) ;}
 
 #logo{max-width: 28px;}
 
-#menu{
+.menu{
     display:grid;
     grid-template-columns: 1fr;
     justify-items: stretch;
     gap:.5rem;
 }
 
-#menu #menuAddWord{
+.menu #menuAddWord{
     display:grid;
     grid-template-columns: 1fr auto;
-    gap:.5rem
+    gap:.5rem;
 }
 
-#menu #menuAddWord button{
+.menu #menuAddWord button{
     padding:0;
 }
 
-#menu #clear {
+.menu #clear {
     display: none;
 }
 
 /* ESTILOS DE BOTONES E INPUTS */
-#menu button, #menu input, #menu #add, #menu p{
+.menu button, .menu input, .menu #add, .menu p{
     width:100%;
     background-color: inherit;
     display:inline-block;
@@ -74,44 +74,53 @@ body{width:100%; height: 100%; background-color: var(--fondo) ;}
     border-radius: .6rem;
 }
 
-#menu button{
+.menu button{
     cursor: pointer;
 }
 
-#menu button i{
+.menu button i{
     padding:1rem;
 }
 
-#menu #newGame, #menu #add{
+.menu #newGame, .menu #add{
     background-color: var(--alura);
     color:white;
     text-transform: uppercase;
 }
 
-#menu #newGame:hover,
-#menu #newGame:focus,
-#menu #add:hover,
-#menu #add:focus{
+.menu #word{
+    opacity: .7;
+}
+
+.menu #word:hover,
+.menu #word:focus{
+    opacity: 1;
+}
+
+.menu #newGame:hover,
+.menu #newGame:focus,
+.menu #add:hover,
+.menu #add:focus{
     background: linear-gradient(135deg, var(--alura-dark) 0%, var(--alura) 30%, rgb(12, 17, 72) 100%);
 }
 
 
-#menu #word{
+.menu #word{
     text-transform: uppercase;
     border-bottom: 1px solid var(--alura);
     background-color: white;
 }
 
-#menu #word::placeholder{
+.menu #word::placeholder{
     color: var(--alura);
 }
 
-#menu #word:hover,
-#menu #word:focus{
+.menu #word:hover,
+.menu #word:focus{
     border-color: var(--alura);
 }
 
-#menu #menuError{
+.menu #menuError{
     margin:1rem 0;
     display: flex;
     justify-content: center;
@@ -126,11 +135,11 @@ body{width:100%; height: 100%; background-color: var(--fondo) ;}
     border-radius:.25rem;
 }
 
-#menu #menuError i{
+.menu #menuError i{
     padding:.25rem 0 .25rem 1rem;
 }
 
-#menu #error{
+.menu #error{
     margin:0;
     padding:0 1rem;
     font-size: .8rem;
@@ -140,7 +149,7 @@ body{width:100%; height: 100%; background-color: var(--fondo) ;}
     background-color: transparent;
 }
 
-#menu #clear{
+.menu #clear{
     color: var(--alura);
     opacity: .5;
 }
@@ -156,3 +165,94 @@ body{width:100%; height: 100%; background-color: var(--fondo) ;}
 #footer:focus{
     opacity: 1;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.menu#juego{
+    display:none;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content 1fr min-content min-content;
+    gap:1rem;
+}
+
+.menu #image{
+    width: 100%;
+    margin:1rem 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.menu #image img{
+    max-width: 100%;
+    height: 200px;
+}
+ 
+#secretWord{
+    color:var(--alura);
+    padding: 1rem;
+    font-weight: 600;
+    font-size: 2rem;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, 30px);
+    grid-template-rows: 1fr;
+    justify-content: center;
+    gap:.5rem;
+}
+
+#secretWord p{
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 3px solid var(--alura);
+    border-radius: 0;
+    padding: 0;
+}
+
+
+#divInputLetras{
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.menu #divInputLetras #letterPress{
+    background-color: white;
+    color: #0a3871;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.menu #divInputLetras button{
+    background-color: var(--alura);
+    color: white;
+}
+
+.menu #divInputLetras #letterPress,
+.menu #divInputLetras button{
+    padding: 0;
+}
+
+.menu #divInputLetras #letterPress::placeholder{
+    padding: 0;
+    font-size: 1rem;
+    vertical-align: middle;
+    font-weight: 300;
+    text-transform: initial;
+}
+

@@ -1,10 +1,50 @@
 let word;
+let guestWord;
+let fakeWord = [];
+
+let randomWord;
+let letter;
 let words = [];
+let letters = [];
 let wordInput = document.getElementById('word');
 
+let main = document.getElementById('main');
+let menu = document.getElementById('menu');
+
+let juego = document.getElementById('juego');
 let newGame = document.getElementById('newGame');
 let errorAlert = document.getElementById('menuError');
 let clearWords = document.getElementById('clear');
+let random = -1;
+let secretWord = document.getElementById('secretWord');
+
+function toPlay(letters, fakeWord, randomWord, inicio){
+    if (inicio){
+        alert("hola");
+        for (let i=0; i<fakeWord.length; i++){
+            alert("hola again");
+            secretWord.innerHTML += '<div><p>' + "hola" + '</p></div>';
+        }
+    }
+    //             secretWord.innerHTML += '<div><p>' + letras[j] + '</p></div>';
+    //             alert("si");
+    //         }else{
+    //             alert("no");
+    //         }
+            
+    //         // secretWord.innerHTML += '<div><p>' + words[random][i].toUpperCase() + '</p></div>';
+    
+    //     }
+    // }
+    
+    
+}
+
+function fakerWord(){
+    for (let i=0; i<randomWord.length; i++){
+        fakeWord.push("");
+    }
+}
 
 add.onclick = () => {
     word = wordInput.value.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s\s+/g, " ").trim().toLowerCase();
@@ -33,7 +73,18 @@ newGame.onclick = () => {
         },5000);
         wordInput.focus();
     }else{
-        alert("ok")
+        menu.style.display = "none";
+        main.style.justifyContent = "flex-start";
+        juego.style.display = "grid";
+        while (random<0 || random>=words.length){
+            random = Math.round(Math.random()*words.length);
+        }
+        randomWord = words[random];
+        
+        fakerWord();
+
+        // toPlay(letters, fakeWord, randomWord, true);
+
     }
 }
 
@@ -44,4 +95,25 @@ clearWords.onclick = () => {
         clearWords.style.display = "none";
     }
 }
+
+
+let letterPress = document.getElementById('letterPress');
+let letterCheck = document.getElementById('letterCheck');
+
+
+letterPress.onkeyup = function(e) {
+    let max = 1; // The maxlength you want
+  
+    if(letterPress.value.length > max) {
+      letterPress.value = letterPress.value.substring(0, max);
+    }
+  
+};
+
+letterCheck.onclick = () => {
+    letter = letterPress.value.toLowerCase();    
+}
+
+
+
 
