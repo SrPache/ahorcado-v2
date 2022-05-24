@@ -87,7 +87,7 @@ function heartsLeft(){
         setTimeout(()=>{
             sourceImage++;
             gameImage.src = 'public/media/img/states/state-'+ sourceImage+'.png';
-        },3000);
+        },1300);
         gameImage.style.height = '100%';
     } else {
         for (let i = 0; i < lives; i++) {
