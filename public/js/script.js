@@ -21,6 +21,7 @@ let gameImage = document.getElementById('gameImage');
 let lives = 7;
 let sourceImage = 0;
 let wrong = false;
+let gano;
 
 function fakerWord(){
     for (let i=0; i<randomWord.length; i++){
@@ -55,6 +56,7 @@ function checkWords(randomWord, fakeWord, letter){
         sourceImage++;
         gameImage.src = 'public/media/img/states/state-'+ sourceImage+'.png';
     }
+
 }
 
 function play(randomWord, fakeWord, letter){
@@ -64,8 +66,15 @@ function play(randomWord, fakeWord, letter){
         secretWord.innerHTML += '<div><p>' + fakeWord[i] + '</p></div>';
     }
     heartsLeft();
+    gano = fakeWord.join('');
     letterPress.value = "";
     letterPress.focus();
+    if (gano==randomWord){
+        divInputLetras.style.display = "none";
+        gameImage.style.display = "none";
+        secretWord.style.minWidth = "80vw";
+        finH2.innerHTML = "GANASTE!";
+    }
 }
 
 function heartsLeft(){
@@ -139,12 +148,10 @@ let letterCheck = document.getElementById('letterCheck');
 
 
 letterPress.onkeyup = function(e) {
-    let max = 1; // The maxlength you want
-  
+    let max = 1; // The maxlength you want 
     if(letterPress.value.length > max) {
       letterPress.value = letterPress.value.substring(0, max);
     }
-  
 };
 
 letterCheck.onclick = () => {
